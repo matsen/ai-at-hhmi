@@ -1,0 +1,63 @@
+\documentclass[nobib]{tufte-handout}
+%\usepackage{etex} \reserveinserts{36}
+\usepackage{graphicx}
+\usepackage{morefloats}
+\usepackage{cite}
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio}
+\graphicspath{{figures/}}
+
+% The units package provides nice, non-stacked fractions and better spacing
+% for units.
+% \usepackage{units}
+
+% The fancyvrb package lets us customize the formatting of verbatim
+% environments.  We use a slightly smaller font.
+\usepackage{fancyvrb}
+\fvset{fontsize=\normalsize}
+
+% Small sections of multiple columns
+% \usepackage{multicol}
+
+\hypersetup{colorlinks}
+
+\newcommand{\minisec}[1]{\vspace{3pt} \noindent \emph{#1}\ }
+
+\title{Inviting Darwin into protein foundation models}
+\author{\href{http://matsen.fredhutch.org/}{Frederick A. Matsen}, Fred Hutchinson Cancer Center}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent
+Language models of protein sequences have tremendous promise for understanding and predicting the function of protein variants.
+However, the current generation of models ignore evolutionary biology.
+We have shown that by placing a deep neural network inside a classical mutation-selection model for antibodies, we obtain a model that does much better at functional prediction, as well as being more interpretable, 10x smaller, and 500x faster.
+\end{abstract}
+
+\newthought{Evolution is a process of mutation and selection.}
+This simple statement is the foundation of modern biology.
+High-throughput sequencing now delivers detailed information about the participants in this evolutionary competition, which pits the adaptive and innate immune systems versus viruses and bacteria.
+I count myself lucky to be developing and applying algorithms to analyze sequence data from each of these four major players.
+Here I will mostly focus on our most recent work on adaptive immunity, but will mention the other components after.
+
+% %
+% \begin{marginfigure}[-5.3cm]%
+%   \hspace{-17pt}
+%   \includegraphics[width=2.2in]{overview.png}%
+%   \caption{\
+%   The VDJ rearrangement process consists of random selection of V, D, and J genes, random trimming of their ends, then joining them with random nucleotides.
+%   }%
+%   \label{FIGvdj}%
+% \end{marginfigure}
+
+\newpage
+\bibliography{research}
+\bibliographystyle{tufte}
+
+\end{document}
+
+
+% ,matsen2012ubiquity
