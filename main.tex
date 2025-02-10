@@ -54,32 +54,35 @@ Indeed, such models are trained using a masked loss on observed protein sequence
   \hspace{-19pt}
   \includegraphics[width=2.4in]{figures/evolution-is-mut-and-sel.why.pdf}%
   \caption{the Darwinian perspective}
+  \label{fig:darwin}
 \end{marginfigure}
 
 Our specialty is the evolution of antibodies, and we have seen these effects in antibody language models.
 Although antibody language models are benchmarked for functional prediction~\cite{Chungyoun2024-fc}, nucleotide-level effects are obvious when one looks for them.
 For example, AbLang2~\cite{Olsen2024-ablang2} estimates amino acids coded for by codon neighbors as being two orders more likely than non-neighbors.
-The effect of neutral mutation probability is also evident (Figs~1 \& 2).
+The effect of neutral mutation probability is also evident (Figs~\ref{fig:codon} \& \ref{fig:neutral}).
 
 \begin{marginfigure}[-7.8cm]%
   \hspace{-19pt}
   \includegraphics[width=2.0in]{figures/ablang2-neighbor-csp.pdf}%
   \caption{AbLang2 probabilities}
+  \label{fig:codon}
 \end{marginfigure}
 
 These factors negatively impact functional prediction for these models.
-For example, AbLang2's correlation with the expression data of~\cite{Koenig2017-vm} drops from 0.49 for codon neighbors to 0.30 for non-neighbors, and when put together the correlation is only 0.34.
+For example, AbLang2's correlation with expression data~\cite{Koenig2017-vm} drops from 0.49 for codon neighbors to 0.30 for non-neighbors, and when put together the correlation is only 0.34.
 The results for benchmark binding assays are significantly worse.
 
 \begin{marginfigure}[-1.2cm]%
   \hspace{-19pt}
   \includegraphics[width=2.4in]{figures/ablang2-vs-neutral.pdf}%
   \caption{neutral probs vs LLM probs}
+  \label{fig:neutral}
 \end{marginfigure}
 
 \subsection*{A deep natural selection model is a win on all fronts}
 
-Rather than fitting a combined model of mutation and selection, we can fit separate models in a manner exactly mirroring Figure~1:
+Rather than fitting a combined model of mutation and selection, we can fit separate models in a manner exactly mirroring Figure~\ref{fig:darwin}:
 \begin{equation}
 \color{dark2orange}{m_{j,c}(t, P)} = \color{dark2green}{p_{j,c}(t, P)} \cdot \color{dark2purple}{f_{j,\bar{c}}(\bar{P})}.
 \label{eq:darwin}
@@ -99,9 +102,9 @@ This is a higher-resolution and modern version of foundational models from 25 ye
 The mutation term $\color{dark2green}{p_{j,c}(t, P)}$ is a convolutional neural network modeling the neutral mutation process~\cite{thrifty} and the selection term $\color{dark2purple}{f_{j,\bar{c}}(\bar{P})}$ is a transformer-encoder neural network of modest size.
 Rather than training using an abiological masked-modeling objective, our objective is to predict the location and identity of mutations in the evolution of antibodies.
 
-This Deep Amino acid Selection Model performs better according to every metric.
+This Deep Amino acid Selection Model (DASM) performs better according to every metric.
 It has better model fit (Figure~\ref{fig:perplexity}).
-It also performs better on benchmark tasks (Table~\ref{tab:model-comparison}).
+It also performs better on functional benchmark tasks (Table~\ref{tab:model-comparison}).
 It is an order of magnitude smaller than the smallest modern antibody language model, trained on orders of magnitude less data, and 500x faster to run.
 The models are readily interpretable (Figure~\ref{fig:interpretation}).
 \begin{table}[ht]
@@ -114,9 +117,9 @@ The models are readily interpretable (Figure~\ref{fig:interpretation}).
     Shane. binding 120~\cite{Shanehsazzadeh2023-qe} & 0.166 & 0.337 & 0.052 & \textbf{0.540} \\
     \bottomrule
     \end{tabular}
-    \caption{Correlation of models with functional predictions on the biggest benchmark datasets from~\cite{Chungyoun2024-fc}.
-    Competitor models include AbLang2~\cite{Olsen2024-ablang2} as well as leading protein LLMs ESM~\cite{Rives2021-la}, and ProGen2~\cite{Nijkamp2022-fy}.
-    The ``small'' version of ProGen2 has been shown to be best existing model at these tasks~\cite{Chungyoun2024-fc}.
+    \caption{Correlation of models with functional measurements on the biggest benchmark datasets from~\cite{Chungyoun2024-fc}.
+    Competitor models include AbLang2~\cite{Olsen2024-ablang2} as well as leading protein LLMs ESM~\cite{Rives2021-la} and ProGen2~\cite{Nijkamp2022-fy}.
+    ProGen2 has been shown overall to be best existing model at functional prediction tasks~\cite{Chungyoun2024-fc}.
     }
     \label{tab:model-comparison}
   \end{table}
@@ -142,7 +145,7 @@ The resulting fitness predictions will be much higher resolution than existing m
 We will develop general-purpose protein selection models.
 There is nothing in our formulation (\ref{eq:darwin}) that is specific to viruses or the immune system.
 This will require us to do phylogeny and ancestral sequence reconstruction on massive scale.
-We will be competing with startups such as \href{https://www.evolutionaryscale.ai/}{EvolutionaryScale}, which has hundreds of millions in VC funding.
+We will be competing with startups such as \href{https://www.evolutionaryscale.ai/}{EvolutionaryScale}, which recently got \$142M in VC funding.
 
 \section{Impact}
 Our open-source models will accurately capture the \emph{functional} aspects of protein evolution across domains. 
