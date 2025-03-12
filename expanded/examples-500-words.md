@@ -1,41 +1,34 @@
 ## DASMs for antibodies
 
 I have already seen how DASMs provide much better prediction of functional properties in the zero-shot (i.e. no labeled training data) setting.
-Furthermore, our training data has no antigen labels, so the fact that the model can predict binding at all is a welcome surprise.
+With our training data having no antigen labels, the model's ability to predict binding is a welcome surprise.
 
-We expect that fine-tuning on data that is enriched in antigen-specific data will reveal the landscape of binders.
-We also believe that building a model that takes an entire clonal family's worth of data (see Experimental Design) will enable implicit antigen-specific prediction: even though we don't know the epitope, we know that all sequences in a given clonal family will bind that epitope.
-We also expect that the protein embeddings for DASMs, given that they are free from the confounding effects of SHM, will be more predictive of functional properties than their classical counterparts.
+Fine-tuning on antigen-specific data will reveal the landscape of binders.
+Building a model that takes an entire clonal family's data will enable implicit antigen-specific prediction, using the fact that all sequences in a given clonal family will bind that epitope.
+The protein embeddings for DASMs, free from SHM confounding effects, will be more predictive of functional properties.
 
 ## DASMs for viral evolution
 
-Evolutionary analysis of viral sequences has led to many insights about how viruses adapt to immune pressures, however, conclusions are necessarily limited in precision because the statements made by the evolutionary models are on the level of sequence alignments.
-When doing an analysis for a given virus, one collects sequence for that virus and can make statements about how selection acts on that collection of sequences.
-If one has a lot of data, one can make a statement about the selection acting per-site for that virus, however, due to model limitations, one cannot learn per-sequence per-site using existing methods (Figure~3, top).
+Evolutionary analysis of viral sequences has led to insights about viral adaptation, but conclusions are limited because evolutionary models give overall inferences for entire sequence alignments.
+For a given virus, one can make per-site selection statements with sufficient data, but cannot learn per-sequence per-site using existing methods (Figure~3, top).
 
-DASMs, in contrast, do return per-sequence per-site estimates of natural selection (Figure~3, bottom).
-In fact, we infer per-sequence per-site per-amino-acid estimates, and have shown using functional assays and investigations that these estimates are meaningful.
-This is enabled by training on lots of related datasets, only one of which may contain a virus of interest.
+In contrast, DASMs return per-sequence per-site estimates of natural selection (Figure~3, bottom).
+In fact, we infer per-sequence per-site per-amino-acid estimates, validated through functional assays.
+This is enabled by training on related datasets, which in the antibody case are different clonal families.
 
-As an example, imagine we are interested on comparing the selection pressure on a single H5N1 sequence in humans. 
-In the classical setting, one would gather a collection of H5N1 hemagglutinin sequences, of which there aren't very many, and perform an evolutionary analysis for that alignment.
-This analysis would lack power.
-One might want to add other sequences, such as H1N1 sequences, but that would distort the inference.
+A similar concept applies for viruses.
+For example, when studying selection pressure on an H5N1 sequence in humans, traditional analysis would gather H5N1 hemagglutinin sequences and perform evolutionary analysis, lacking power because these sequences are few.
+Adding other sequences, such as from H1N1, would distort the inference.
 
-In the DASM case, one could train a model using not only all hemagglutinin sequences from influenza, but also all of the hemagglutinin from the Orthomyxoviridae and Paramyxoviridae.
-In fact, one could probably benefit by considering all proteins as described in the next section.
+With DASMs, one could train using hemagglutinin sequences from influenza, Orthomyxoviridae and Paramyxoviridae, or even all proteins.
+Then one could ask for an inference for a given H5N1 sequence, leveraging all of the data but making a precise prediction.
 
-The predictions will be readily interpretable.
-Jesse Bloom's `phydms` software can reveal the effects of natural selection above and beyond the selection observed in a lab deep mutational scan (DMS).
-However, it requires an entire sequence alignment, and predicts a per-site selection estimate.
-With a DASM, one can directly compare the output to the DMS, simply reading off the differences.
+The predictions will answer questions of interest for evolutionary virologists.
+While Bloom's `phydms` software reveals natural selection effects beyond lab deep mutational scans (DMS), it requires a sequence alignment and predicts per-site selection for that entire sequence alignemnt.
+One can directly compare the output of a DASM to the DMS, simply reading off the differences.
 
-It would also provide a flexible framework in which one could input additional covariates and data.
-This could include calendar time, which would be a proxy for immune exposures.
-It could also include a recently-developed high-throughput neutralization assay developed by the Bloom lab.
-It could even include a measure of the number of descendants of a sequence, as in the Bloom-Neher viral fitness estimation framework which has provided valuable insight into the evolution of viral fitness through time.
-
+The deep-learning paradigm also provides a framework to input additional covariates like calendar time, high-throughput neutralization assays, or measures of the success of descendant sequences.
 
 ## DASMs for proteins in general
 
-I expect DASMs to do everything that the ESM2 model could do, except more accurately and faster.
+I expect DASMs to do everything that ESM2 could do, more accurately and faster.
