@@ -1,6 +1,6 @@
 ## DASMs for antibodies
 
-I have already seen how DASMs provide much better prediction of functional properties in the zero-shot (i.e. no labeled training data) setting (Table 1).
+We have already shown how DASMs provide much better prediction of functional properties in the zero-shot (i.e. no labeled training data) setting (Table 1).
 With our training data having no antigen labels, the model's ability to predict binding is a welcome surprise.
 
 As a next step, fine-tuning on antigen-specific data will reveal the landscape of binders in greater resolution.
@@ -13,7 +13,7 @@ Also, the protein embeddings for DASMs, free from SHM confounding effects, will 
 ## DASMs for viral evolution
 
 Evolutionary analysis of viral sequences has led to insights about viral adaptation, but conclusions are limited because evolutionary models give overall inferences for entire sequence alignments.
-For a given virus, one can make per-site selection statements with sufficient data, but cannot learn per-sequence per-site using existing methods (Figure 2, top).
+For a given virus, one can make per-site selection statements with sufficient data, but cannot learn per-sequence per-site using existing methods (Figure 2, top). In other words, existing methods do not account for epistasis.
 
 In contrast, DASMs return per-sequence per-site estimates of natural selection (Figure 2, bottom).
 In fact, we infer per-sequence per-site per-amino-acid estimates, validated through functional assays.
