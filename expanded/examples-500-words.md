@@ -3,8 +3,9 @@
 I have already seen how DASMs provide much better prediction of functional properties in the zero-shot (i.e. no labeled training data) setting.
 With our training data having no antigen labels, the model's ability to predict binding is a welcome surprise.
 
-Fine-tuning on antigen-specific data will reveal the landscape of binders.
-Building a model that takes an entire clonal family's data will enable implicit antigen-specific prediction, using the fact that all sequences in a given clonal family will bind that epitope.
+As a next step, fine-tuning on antigen-specific data will reveal the landscape of binders.
+However, antigen-labeled data is limited, thus we will use the fact that all sequences in a given clonal family (i.e. the descendants of a given naive antibody sequence) will bind a single epitope.
+Thus, we will build a model that takes an entire clonal family's data to enable implicit antigen-specific prediction.
 The protein embeddings for DASMs, free from SHM confounding effects, will be more predictive of functional properties.
 
 ## DASMs for viral evolution
@@ -24,11 +25,16 @@ With DASMs, one could train using hemagglutinin sequences from influenza, Orthom
 Then one could ask for an inference for a given H5N1 sequence, leveraging all of the data but making a precise prediction.
 
 The predictions will answer questions of interest for evolutionary virologists.
-While Bloom's `phydms` software reveals natural selection effects beyond lab deep mutational scans (DMS), it requires a sequence alignment and predicts per-site selection for that entire sequence alignemnt.
-One can directly compare the output of a DASM to the DMS, simply reading off the differences.
+While Bloom's `phydms` software reveals natural selection effects beyond lab deep mutational scans (DMS), it requires a sequence alignment and predicts overall per-site selection for that entire sequence alignment.
+In contrast, one can directly compare the per-site per-amino acid output of a DASM to the DMS, by simply reading off the differences.
 
 The deep-learning paradigm also provides a framework to input additional covariates like calendar time, high-throughput neutralization assays, or measures of the success of descendant sequences.
 
 ## DASMs for proteins in general
 
-I expect DASMs to do everything that ESM2 could do, more accurately and faster.
+The ESM class of models was the first and still most used protein language models.
+It is trained using masked language modeling on all of UniRef.
+It has shown its versatility in tasks from predicting variant effects to (forming the basis of) structure prediction.
+It is the foundation for a startup, EvolutionaryScale, which recently got $142M in VC funding, and produces closed-source models.
+
+Because these tasks concern protein sequence function, and not mutation, I expect DASMs to perform better than such a model trained using masked language modeling.
