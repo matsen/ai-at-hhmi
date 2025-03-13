@@ -3,7 +3,7 @@ I suspect that we could handle this project entirely on our own.
 That said, it would be faster and more fun to collaborate with AI@HHMI scientists as follows:
 
 ### AI Scientist (1.0 FTE)
-We could use dedicated personnel to explore model variants and optimize training schemes. While our current approach is performing well with a standard PyTorch transformer architecture and basic training methodology, additional research expertise would enable us to:
+We would benefit from dedicated personnel to explore model variants and optimize training schemes. While our current approach is performing well with a standard PyTorch transformer architecture and basic training methodology, additional research expertise would enable us to:
 - Investigate and implement alternative attention mechanisms such as Flash Attention and Rotary Position Embeddings (RoFormer)
 - Conduct ablation studies to identify optimal model configurations
 - Design and execute comparative experiments between model variants

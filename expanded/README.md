@@ -22,7 +22,6 @@ How much of the data needed is already available (in your lab and elsewhere)? If
 
 * How have you estimated that requirement?
 
-
 ## experimental-design-750-words.txt
 
 Describe the assay or other experimental procedures that will be used for data collection.

@@ -13,4 +13,4 @@ If we estimate that current GPUs are about 3x faster than V100s, then we'd need 
 
 For clustering sequences into homologous groups, then doing alignments and trees on UniRef, we will require a bunch of CPU compute.
 
-TODO: estimate time required.
+TODO: estimate CPU time required.

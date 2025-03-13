@@ -2,7 +2,7 @@ DASMs are trained using a precomputed mutation model (green box, Figure 1a), fit
 This is a joint optimization between the selection model and the branch length t separating each parent-child sequence pair.
 
 
-## DASMs for antibodies 
+## Improving DASMs for antibodies 
 
 We will first build on our successes building general antibody selection models by scaling up and modernizing our architectures.
 
