@@ -1,3 +1,5 @@
+DASMs are trained using a precomputed mutation model (green box, Figure 1a), fitting the DASM selection model (purple box) with the objective of predicting the child sequence in phylogenetic parent-child sequence pairs.
+This is a joint optimization between the selection model and the branch length t separating each parent-child sequence pair.
 
 
 ## DASMs for antibodies 
@@ -7,58 +9,50 @@ We will first build on our successes building general antibody selection models 
 We will also develop implicit antigen-specific models by leveraging clonal family structure.
 Clonal families are collections of antibody sequences that descend from a common ancestor created by VDJ recombination.
 They differ from this ancestor through the mutation and selection processes that form affinity maturation.
-It is very rare that an antibody will change epitope (i.e. binding target) in the course of affinity maturation.
-Thus, although we do not know what epitope is bound by a given clonal family, we can assume that all sequences in it bind the same epitope.
+It is very rare that an antibody will change binding target in the course of affinity maturation.
+Thus, although we do not know what antigen is bound by a given clonal family, we can assume that all sequences in it bind the same antigen.
 
-We can leverage this hidden epitope label for each clonal family by expanding our model to include information from the rest of the clonal family.
+We can leverage this hidden antigen label for each clonal family by expanding our model to include information from the rest of the clonal family.
 We are currently trialing this idea by doing limited fine-tuning for small clonal families to see if prediction is improved.
 If this works, we will expand our networks to ingest information from entire clonal families at a time.
 
 We are also excited to perform selection inference for insertion-deletion events in antibody sequences.
-A simple way to do this will be to have another track of output that indicates the selective effect of insertion-deletion events. The next step after that would be to make a complete autoregressive model which would generate a child sequence probabilistically from the parent sequence. 
+A simple way to do this will be to have another track of output that indicates the selective effect of insertion-deletion events. 
+The next step after that would be to make a complete autoregressive model which would generate a child sequence probabilistically from the parent sequence. 
 This has not yet been done in the mutation-selection setting.
 
 
 ## DASMs for viral evolution
 
-We are building the foundation for DASMs on viral evolution.
+Our next step is to use DASMs to understand viral evolution.
 We already have a neutral model for SARS-CoV-2, which incorporates local sequence context, RNA pairing, and genomic position effects.
 We are just starting to build the same type of model for influenza.
 
 With these ingredients, the DASM inference will proceed as for antibodies.
 As before, we will infer parent-child pairs of sequences from large phylogenetic trees built on multiple sequence alignments.
-We will need to infer gappy internal sequences
+In contrast to for antibodies, we will not be able to ignore insertions and deletions in evolution.
 
-ArPIP algorithm linear time https://academic.oup.com/sysbio/article/72/2/307/6648472
+Thus we will need to perform multiple sequence alignment, as well as infer gappy internal sequences.
+Multiple sequence alignment is a well-studied problem, and inferring gappy internal sequences can be performed using either gap coding or the recently-developed linear-time ArPIP algorithm.
 
-We will perform refined pairwise codon alignment for these parent-sequence pairs, identifying and annotating insertion and deletion events.
+We will begin by inferring a DASM on just H3N2 sequences, and then progressively add other subtypes and viral families.
+At every stage we will evaluate the accuracy of the prediction by comparing them to baselines using held-out data.
+Baseline models will include typical mutation models used in phylogenetics, Goldman-Yang models, and also Jesse Bloom's ExpCM models that include some deep mutational scanning (DMS) information; DMS is a lab assay that tests function of sequences after replacing every amino acid at every site with every other amino acid.
+Held-out data could be a subtree, or a separate tree (e.g. H1N1).
 
+We will also experiment with using conditional model fitting incorporating DMS data.
+That is, we will use a loss that incorporates a DMS prediction task, however the sequence used for prediction will be labeled with a token that indicates that we are predicting DMS and not natural evolution.
+This is important because natural evolution reflects many selection pressures that are not present for a lab DMS experiment.
 
-Yun, I'm starting to wonder about the feasibility and utility of trying to infer deep natural selection models for proteins in general.
-As I think you know, the idea is that by focusing on the selection component using an explicit mutation-selection model, one can more clearly get an idea of the structurally-relevant signal of evolution.
-This has worked very well for antibodies, where we get a diversity of sequences but parent-child pairs are relatively close together.
-
-It would seem exciting to extend this to proteins in general.
-The advantages would be the same as for 
-
-MSA transformer does 
-
-Pre-training Dataset Models are trained on a dataset of
-26 million MSAs. An MSA is generated for each UniRef50
-(Suzek et al., 2007) sequence by searching UniClust30
-(Mirdita et al., 2017) with HHblits (Steinegger et al., 2019).
-The average depth of the MSAs is 1192. See Fig. A.2 for
-MSA depth distribution.
-
-Then build trees.
-
-
-
+We are also interested to understand if the DASM predicts shifts between homologs as measured by DMS.
 
 
 ## DASMs for proteins in general
 
+If it proves useful to add related sequence alignments to our model training for viral proteins, we will take this work to its logical conclusion and train on all proteins.
 
-3. Longer term (first release in 2-3 years): Develop general-purpose protein selection models. Our formulation is not specific to viruses or the immune system but will require phylogeny and ancestral sequence reconstruction at massive scale. We will train on UniRef to create comprehensive open-source models.
+This is not conceptually difficult.
+The MSA transformer was trained on 26 million multiple sequence alignments generated by searching UniClust30 with HHblits for each UniRef50 sequence.
+We could do something similar, or we could leverage the recent structural clustering of the AlphaFold Protein Structure Database.
 
-
+We will then perform codon multiple sequence alignment, and then ancestral sequence reconstruction as described above.
