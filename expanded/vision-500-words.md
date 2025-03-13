@@ -2,7 +2,7 @@
 
 ## Overall Vision and Goals
 
-Our project will integrate evolutionary biology principles into protein language models. Specifically, we will train models of natural selection for antibodies, viruses, and proteins in general.
+Our project will integrate evolutionary biology principles into protein language models. Specifically, we will train models of natural selection for antibodies, viruses, and proteins more generally.
 
 Evolution is fundamentally a process of mutation and selection, yet current protein language models ignore this biological reality. These models are trained using masked loss on observed sequences, which removes proteins from their phylogenetic context and ignores the nucleotide-level processes driving evolution.
 
