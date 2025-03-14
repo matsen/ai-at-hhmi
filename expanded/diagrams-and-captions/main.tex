@@ -52,7 +52,7 @@ In this way, we are able to use a diversity of sequences to train a model of max
   \end{tabular}
 \end{center}
   \caption{%
-  DASM models have better performance for antibody functional prediction yet are smaller and much faster.
+  DASMs have better performance for antibody functional prediction yet are smaller and much faster.
   The first four rows show the correlation between prediction and functional data for the largest data sets in the FLAb benchmark repository.
   The last two rows show the number of parameters and the execution time to evaluate 100 sequences on an A100 GPU.
   }
@@ -63,7 +63,7 @@ In this way, we are able to use a diversity of sequences to train a model of max
 \centering
 \centerline{\includegraphics[width=0.75\textwidth]{figures/sites-oe-rodriguez}}
 \caption{\
-DASMs are much better able to predict child sequences from parent sequences than language models.
+DASMs are much better at predicting child sequences from parent sequences than language models.
 Each model was run on a held-out dataset and for each sequence asked to predict the probability that each site would mutate.
 The total observed number of mutations is marked with dots, while the total model predictions are shown as a bar plot.
 }%
@@ -72,7 +72,7 @@ The total observed number of mutations is marked with dots, while the total mode
 
 \begin{figure}[h!]
 \centering
-\centerline{\includegraphics[width=0.6\textwidth]{figures/fig1}}
+\centerline{\includegraphics[width=0.64\textwidth]{figures/fig1}}
 \caption{\
 Nucleotide-level processes distort protein language model predictions.
 (\textbf{A}) Distribution of AbLang2 probabilities for amino acids accessible from a naive BCR sequence by single nucleotide mutations (neighbors) versus those requiring multiple mutations (non-neighbors) from the original codon.

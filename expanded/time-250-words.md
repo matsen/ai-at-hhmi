@@ -1,7 +1,7 @@
 ## Antibody models (first release in months)
 
 * We already have completed deep natural selection models, a predecessor of the Deep Amino acid Selection Models (DASMs) proposed here, which got positive peer review.
-* By mid-June we will post and release our first DASM models for antibodies.
+* By mid-June we will post and release our first DASMs for antibodies.
 * We will continue to scale, refine, interpret, and develop software to fine-tune these models for antigen targets in the coming years.
 
 ## Virus evolution models (first release in 1-2 years)
