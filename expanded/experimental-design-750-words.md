@@ -14,7 +14,6 @@ Thus, although we do not know what antigen is bound by a given clonal family, we
 
 We can leverage this hidden antigen label for each clonal family by expanding our model to include information from the rest of the clonal family.
 We are currently trialing this idea by doing limited fine-tuning for small clonal families to see if prediction is improved.
-If this works, we will expand our networks to ingest information from entire clonal families at a time.
 
 We are also excited to perform selection inference for insertion-deletion events in antibody sequences.
 A simple way to do this will be to have another track of output that indicates the selective effect of insertion-deletion events. 
@@ -24,16 +23,13 @@ This has not yet been done in the mutation-selection setting.
 
 ## DASMs for viral evolution
 
-Our next step is to use DASMs to understand viral evolution.
-We already have a neutral model for SARS-CoV-2, which incorporates local sequence context, RNA pairing, and genomic position effects.
-We are just starting to build the same type of model for influenza.
+Our next step is to use DASMs to understand viral evolution. We already have a neutral model for SARS-CoV-2, which incorporates local sequence context, RNA pairing, and genomic position effects. 
+We are now building the same type of model for influenza.
 
 With these ingredients, the DASM inference will proceed as for antibodies.
-As before, we will infer parent-child pairs of sequences from large phylogenetic trees built on multiple sequence alignments.
-In contrast to for antibodies, we will not be able to ignore insertions and deletions in evolution.
-
-Thus we will need to perform multiple sequence alignment, as well as infer gappy internal sequences.
-Multiple sequence alignment is a well-studied problem, and inferring gappy internal sequences can be performed using either gap coding or the recently-developed linear-time ArPIP algorithm.
+As before, we will infer parent-child pairs of sequences from large phylogenetic trees built on multiple sequence alignments. 
+In contrast to the case of antibodies, we will not be able to ignore insertions and deletions in evolution. 
+We will infer gappy internal sequences using either gap coding or the recently-developed linear-time ArPIP algorithm.
 
 We will begin by inferring a DASM on just H3N2 sequences, and then progressively add other subtypes and viral families.
 At every stage we will evaluate the accuracy of the prediction by comparing them to baselines using held-out data.
