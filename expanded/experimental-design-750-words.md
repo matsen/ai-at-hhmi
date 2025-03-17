@@ -1,44 +1,26 @@
-DASMs are trained using a precomputed mutation model (green box, Figure 1a), fitting the DASM selection model (purple box) with the objective of predicting the child sequence in phylogenetic parent-child sequence pairs.
-This is a joint optimization between the selection model and the branch length t separating each parent-child sequence pair.
+DASMs are trained using a precomputed mutation model (green box, Figure 1a), fitting the DASM selection model (purple box) with the objective of predicting the child sequence in phylogenetic parent-child sequence pairs.  This is a joint optimization between the selection model and the branch length t separating each parent-child sequence pair.
 
 
 ## Improving DASMs for antibodies 
 
-We will first build on our successes building general antibody selection models by scaling up and modernizing our architectures.
+We will first build on our successes building antibody selection models by scaling up and modernizing our architectures.
 
-We will also develop implicit antigen-specific models by leveraging clonal family structure.
-Clonal families are collections of antibody sequences that descend from a common ancestor created by VDJ recombination.
-They differ from this ancestor through the mutation and selection processes that form affinity maturation.
-It is very rare that an antibody will change binding target in the course of affinity maturation.
-Thus, although we do not know what antigen is bound by a given clonal family, we can assume that all sequences in it bind the same antigen.
+We will also develop implicit antigen-specific models by leveraging clonal family structure.  Clonal families are collections of antibody sequences that descend from a common ancestor created by VDJ recombination.  Sequences differ from this ancestor through the mutation and selection processes that form affinity maturation.  It is very rare that an antibody will change binding target in the course of affinity maturation.  Thus, although we do not know what antigen is bound by a given clonal family, we can assume that all sequences in it bind the same antigen.
 
-We can leverage this hidden antigen label for each clonal family by expanding our model to include information from the rest of the clonal family.
-We are currently trialing this idea by doing limited fine-tuning for small clonal families to see if prediction is improved.
+We can leverage this hidden antigen label for each clonal family by expanding our model to include information from the rest of the clonal family.  We are currently trialing this idea by doing limited fine-tuning for small clonal families to see if prediction is improved.
 
-We are also excited to perform selection inference for insertion-deletion events in antibody sequences.
-A simple way to do this will be to have another track of output that indicates the selective effect of insertion-deletion events. 
-The next step after that would be to make a complete autoregressive model which would generate a child sequence probabilistically from the parent sequence. 
-This has not yet been done in the mutation-selection setting.
+We are also excited to perform selection inference for insertion-deletion events in antibody sequences.  A simple way to do this will be to have another track of output that indicates the selective effect of insertion-deletion events.  The next step after that would be to make a complete autoregressive model which would generate a child sequence probabilistically from the parent sequence.  This has not yet been done in the mutation-selection setting.
 
 
 ## DASMs for viral evolution
 
-Our next step is to use DASMs to understand viral evolution. We already have a neutral model for SARS-CoV-2, which incorporates local sequence context, RNA pairing, and genomic position effects. 
-We are now building the same type of model for influenza.
+Our next step is to use DASMs to understand viral evolution. We already have a neutral model for SARS-CoV-2, which incorporates local sequence context, RNA pairing, and genomic position effects.  We are now building the same type of model for influenza.
 
-With these ingredients, the DASM inference will proceed as for antibodies.
-As before, we will infer parent-child pairs of sequences from large phylogenetic trees built on multiple sequence alignments. 
-In contrast to the case of antibodies, we will not be able to ignore insertions and deletions in evolution. 
-We will infer gappy internal sequences using either gap coding or the recently-developed linear-time ArPIP algorithm.
+With these ingredients, the DASM inference will proceed as for antibodies.  As before, we will infer parent-child pairs of sequences from large phylogenetic trees built on multiple sequence alignments.  In contrast to the case of antibodies, we will not be able to ignore insertions and deletions in evolution.  We will infer gappy internal sequences using either gap coding or the recently-developed linear-time ArPIP algorithm.
 
-We will begin by inferring a DASM on just H3N2 sequences, and then progressively add other subtypes and viral families.
-At every stage we will evaluate the accuracy of the prediction by comparing them to baselines using held-out data.
-Baseline models will include typical mutation models used in phylogenetics, Goldman-Yang models, and also Jesse Bloom's ExpCM models that include some deep mutational scanning (DMS) information; DMS is a lab assay that tests function of sequences after replacing every amino acid at every site with every other amino acid.
-Held-out data could be a subtree, or a separate tree (e.g. H1N1).
+We will begin by inferring a DASM on just H3N2 sequences, and then progressively add other subtypes and viral families.  At every stage we will evaluate the accuracy of the prediction by comparing them to baselines using held-out data.  Baseline models will include typical mutation models used in phylogenetics, Goldman-Yang models, and also Jesse Bloom's ExpCM models that include some deep mutational scanning (DMS) information; DMS is a lab assay that tests function of sequences after replacing every amino acid at every site with every other amino acid.  Held-out data could be a subtree, or a separate tree (e.g. H1N1).
 
-We will also experiment with using conditional model fitting incorporating DMS data.
-That is, we will use a loss that incorporates a DMS prediction task, however the sequence used for prediction will be labeled with a token that indicates that we are predicting DMS and not natural evolution.
-This is important because natural evolution reflects many selection pressures that are not present for a lab DMS experiment.
+We will also experiment with using conditional model fitting incorporating DMS data.  That is, we will use a loss that incorporates a DMS prediction task, however the sequence used for prediction will be labeled with a token that indicates that we are predicting DMS and not natural evolution.  This is important because natural evolution reflects many selection pressures that are not present for a lab DMS experiment.
 
 We are also interested to understand if the DASM predicts shifts between homologs as measured by DMS.
 
@@ -47,8 +29,8 @@ We are also interested to understand if the DASM predicts shifts between homolog
 
 If it proves useful to add related sequence alignments to our model training for viral proteins, we will take this work to its logical conclusion and train on all proteins.
 
-This is not conceptually difficult.
-The MSA transformer was trained on 26 million multiple sequence alignments generated by searching UniClust30 with HHblits for each UniRef50 sequence.
-We could do something similar, or we could leverage the recent structural clustering of the AlphaFold Protein Structure Database.
+This is not conceptually difficult.  The MSA transformer was trained on 26 million multiple sequence alignments generated by searching UniClust30 with HHblits for each UniRef50 sequence.  We could do something similar, or we could leverage the recent structural clustering of the AlphaFold Protein Structure Database.
 
 We will then perform codon multiple sequence alignment, and then ancestral sequence reconstruction as described above.
+
+However, due to computational constraints we may need to be more selective and, for example, start with sequences most relevant to viral proteins according to structural metrics and progressively make our way out.

@@ -15,6 +15,6 @@ We think that influenza will be the best first virus for which to develop a non-
 
 Once we have experience with viruses, we can turn our attention to proteins in general.
 
-We will need to cluster all of UniRef into homologous groups, build alignments, build trees, and perform ancestral sequence reconstruction. Along the way, we will need to find a good balance between accuracy and runtime.
+We will need to cluster all of UniRef into homologous groups, build alignments, build trees, and perform ancestral sequence reconstruction.  Along the way, we will need to find a good balance between accuracy and runtime.
 
 After that the same conceptual framework will apply as for other proteins, but we will need to do major scale-up and will want to experiment with architectures.
