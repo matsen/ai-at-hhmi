@@ -17,7 +17,7 @@ In the antibody case, the mutation model is a small convolutional neural network
 This DASM is trained using pairs of parent and child sequences obtained from functional antibody sequences clustered into ``clonal families'', which are collections of sequences that descend from a common ancestor created by VDJ recombination.
 The parent-child sequences are then obtained by phylogenetic reconstruction and ancestral sequence inference.
 (b) The DASM takes an input amino acid sequence and predicts selection factors for each possible non-wildtype amino acid at every site. 
-In terms of molecular evolution, positive values indicate that the corresponding amino acid change is more likely than expected under a neutral mutation process. 
+In terms of molecular evolution, positive values (in log space) indicate that the corresponding amino acid change is more likely than expected under a neutral mutation process. 
 Negative values indicate that the amino acid change is less likely than expected. 
 Unlike for masked language models, this is done in a single pass with no need for masking.
 }%
@@ -74,7 +74,7 @@ The total observed number of mutations is marked with dots, while the total mode
 \centering
 \centerline{\includegraphics[width=0.64\textwidth]{figures/fig1}}
 \caption{\
-Nucleotide-level processes distort protein language model predictions.
+Nucleotide-level mutation processes distort protein language model predictions.
 (\textbf{A}) Distribution of AbLang2 probabilities for amino acids accessible from a naive BCR sequence by single nucleotide mutations (neighbors) versus those requiring multiple mutations (non-neighbors) from the original codon.
 (\textbf{B}) The relationship between neutral somatic hypermutation probability and AbLang2's predicted probability of nonsynonymous mutation for nine different naive sequences. Each point represents a site in the sequence.
 Outliers are marked with triangles and brought into the y range.
