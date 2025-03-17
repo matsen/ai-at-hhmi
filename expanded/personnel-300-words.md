@@ -1,7 +1,7 @@
 We would like to collaborate with AI@HHMI personnel as follows:
 
 ### AI Scientist (1.0 FTE)
-We would benefit from dedicated personnel to explore model variants and optimize training schemes. While our current approach is performing well with a standard PyTorch transformer architecture and basic training methodology, additional research expertise would enable us to:
+We would benefit from dedicated personnel to explore model variants and optimize training schemes.  While our current approach is performing well with a standard PyTorch transformer architecture and basic training methodology, additional research expertise would enable us to:
 - Investigate and implement alternative attention mechanisms such as Flash Attention and Rotary Position Embeddings (RoFormer)
 - Conduct ablation studies to identify optimal model configurations
 - Design and execute comparative experiments between model variants
@@ -15,7 +15,7 @@ Engineering support could improve our technical infrastructure:
 - Optimize model performance and efficiency for both training and inference
 
 ### Data Engineer (0.75 FTE)
-Our data preparation needs are to infer phylogenetic trees and perform ancestral sequence reconstruction. Although we are performing this work on our own, additional help would allow us to:
+Our data preparation needs are to infer phylogenetic trees and perform ancestral sequence reconstruction.  Although we are performing this work on our own, additional help would allow us to:
 - Build a more robust and reproducible pipeline
 - Explore alternative reconstruction methods
 - Implement improved computational scaling, which will be important for scaling up to UniRef

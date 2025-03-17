@@ -1,4 +1,4 @@
-DASMs are trained using a precomputed mutation model (green box, Figure 1a), fitting the DASM selection model (purple box) with the objective of predicting the child sequence in phylogenetic parent-child sequence pairs.  This is a joint optimization between the selection model and the branch length t separating each parent-child sequence pair.
+DASMs (Deep Amino acid Selection Models) separate nucleotide mutation from protein selection in evolution, allowing us to better model evolutionary processes.  DASMs are trained using a precomputed mutation model (green box, Figure 1a), fitting the DASM selection model (purple box) with the objective of predicting the child sequence in parent-child sequence pairs in phylogenetic trees.  DASM training is a joint optimization between the selection model and the branch length t separating each parent-child sequence pair.
 
 
 ## Improving DASMs for antibodies 
