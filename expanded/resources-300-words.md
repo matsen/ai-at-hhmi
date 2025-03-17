@@ -11,4 +11,4 @@ For scaling up to training general models like ESM on UniRef, we can refer to th
 
 If we estimate that current GPUs are about 3x faster than V100s, then we'd need around 5,000 GPU-days to train an ESM2 equivalent.
 
-The major bottleneck for this project may be the CPU compute.  Inferring alignments and trees on millions of alignments naively using the most accurate methods could easily take thousands of CPU-years to complete.  Thus we will need to find a balance between accuracy and speed, as well as potentially prioritize alignments based on structural relevance and novelty.
+The major bottleneck for this project may be the CPU compute.  Inferring alignments and trees on millions of alignments naively using the most accurate methods could easily take thousands of CPU-years to complete.  Thus we will need to find a balance between accuracy and speed.  We will also progressively enlarge our training set as described in Experimental Design.
