@@ -4,15 +4,14 @@ We have already shown how DASMs provide much better prediction of functional pro
 
 As a next step, fine-tuning on antigen-specific data will reveal the landscape of binders in greater resolution.  However, antigen-labeled data is limited, thus we will use the fact that all sequences in a given clonal family (i.e. the descendants of a given naive antibody sequence) will bind a single epitope.  Thus, we will build a model that takes an entire clonal family's data to enable implicit antigen-specific prediction.
 
-Also, the protein embeddings for DASMs, free from SHM confounding effects, will be more predictive of functional properties when using them for regression.
+Also, the protein embeddings for DASMs, free from the confounding effects of mutation, will be more predictive of functional properties when using them for regression.
 
 
 ## DASMs for viral evolution
 
 Evolutionary analysis of viral sequences has led to insights about viral adaptation, but conclusions are limited because evolutionary models give overall inferences for entire sequence alignments.  For a given virus, one can make per-site selection statements with sufficient data, but cannot learn per-sequence per-site using existing methods (Figure 2, top).  In other words, existing methods do not account for epistasis.
 
-In contrast, DASMs return per-sequence per-site estimates of natural selection (Figure 2, bottom).  In fact, we infer per-sequence per-site per-amino-acid estimates, validated through functional assays.
-This is enabled by training on many related datasets, which in the antibody case are different clonal families.
+In contrast, DASMs return per-sequence per-site estimates of natural selection (Figure 2, bottom).  In fact, we infer per-sequence per-site per-amino-acid estimates, validated through functional assays.  This is enabled by training on many related datasets, which in the antibody case are different clonal families.
 
 A similar concept applies for viruses.  For example, when studying selection pressure on an H5N1 sequence in humans, traditional analysis would align H5N1 hemagglutinin sequences and perform evolutionary analysis, lacking power because these sequences are few.  Adding other sequences, such as from H1N1, would distort the inference.
 
