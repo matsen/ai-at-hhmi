@@ -17,7 +17,7 @@ In contrast, DASMs return per-sequence per-site estimates of natural selection (
 
 A similar concept applies for viruses.  For example, when studying selection pressure on an H5N1 sequence in humans, traditional analysis would align H5N1 hemagglutinin sequences and perform evolutionary analysis, lacking power because these sequences are few.  Adding other sequences, such as from H1N1, would distort the inference.
 
-With DASMs, one could train using hemagglutinin sequences from all domains of life.  Then one could ask for an inference for a given H5N1 sequence, leveraging all the data but making a precise prediction.
+With DASMs, one could train using all viral hemagglutinin sequences, and even go beyond to lectins in general.  Then one could ask for an inference for a given H5N1 sequence, leveraging all the data but making a precise prediction.
 
 The predictions will answer questions of interest for evolutionary virologists.  While Bloom's `phydms` software reveals natural selection effects beyond lab deep mutational scans (DMS), it requires a sequence alignment and predicts overall per-site selection for that entire sequence alignment.  In contrast, one can directly compare the per-site per-amino acid output of a DASM to the DMS, by simply reading off the differences.
 
