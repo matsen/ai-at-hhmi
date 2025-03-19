@@ -12,6 +12,7 @@ Also, the protein embeddings for DASMs, free from the confounding effects of mut
 ## DASMs for viral evolution
 
 Evolutionary analysis of viral sequences has led to insights about viral adaptation, but conclusions are limited because evolutionary models give overall inferences for entire sequence alignments.  For a given virus, one can make per-site selection statements with sufficient data, but cannot learn per-sequence per-site using existing methods (Figure 2, top).  In other words, existing methods do not account for epistasis.
+_TB: I basically agree with sentence as written. My reaction is that you can get at epistasis by counting mutations on different backgrounds, ie Hugh's work calculating Bloom/Neher fitness effects on different clades. This requires bucketing variation however._
 
 In contrast, DASMs return per-sequence per-site estimates of natural selection (Figure 2, bottom).  In fact, we infer per-sequence per-site per-amino-acid estimates, validated through functional assays.  This is enabled by training on many related datasets, which in the antibody case are different clonal families.
 
@@ -21,7 +22,8 @@ With DASMs, one could train using all viral hemagglutinin sequences, and even go
 
 The predictions will answer questions of interest for evolutionary virologists.  While Bloom's `phydms` software reveals natural selection effects beyond lab deep mutational scans (DMS), it requires a sequence alignment and predicts overall per-site selection for that entire sequence alignment.  In contrast, one can directly compare the per-site per-amino acid output of a DASM to the DMS, by simply reading off the differences.
 
-We also note that the DASM framework can easily account for complex mutational processes, like we uncovered with SARS-CoV-2.  These can confound `phydms` and classical dN/dS approaches.
+We also note that the DASM framework can easily account for complex mutational processes, like we uncovered with SARS-CoV-2 [CITE].  These can confound `phydms` and classical dN/dS approaches.
+_TB: I'm finding the proposal a bit strange to read without citations. I just went to matsen.fhcrc.org/publications.html to figure out what this was referring to._
 
 The deep-learning paradigm also provides a framework to input additional covariates like calendar time, high-throughput neutralization assays, or measures of the success of descendant sequences.
 
