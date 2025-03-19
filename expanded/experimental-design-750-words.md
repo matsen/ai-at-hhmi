@@ -14,7 +14,7 @@ We are also excited to perform selection inference for insertion-deletion events
 
 ## DASMs for viral evolution
 
-Our next step is to use DASMs to understand viral evolution. We already have a neutral model for SARS-CoV-2, which incorporates local sequence context, RNA pairing, and genomic position effects.  We are now building the same type of model for influenza.
+Our next step is to use DASMs to understand viral evolution. We already have a neutral model for SARS-CoV-2, which incorporates local sequence context, RNA pairing, and genomic position effects [CITE].  We are now building the same type of model for influenza.
 
 With these ingredients, the DASM inference will proceed as for antibodies.  In contrast to the case of antibodies, we will not be able to ignore insertions and deletions in evolution.  We will infer gappy internal sequences using either gap coding or the recently-developed linear-time ArPIP algorithm.
 
@@ -34,3 +34,5 @@ This is not conceptually difficult.  The MSA transformer was trained on 26 milli
 We will then perform codon multiple sequence alignment, and then ancestral sequence reconstruction as described above.  The ancestral sequences will be more uncertain than in the case of antibodies or viral proteins, and we will experiment with different ways to represent this uncertainty.  
 
 We will provide proof of concept by prioritizing alignments based on structural relevance and novelty.  Starting with our viral datasets, we will gradually expand to include additional sequences.  First, we'll focus on FoldSeek clusters containing relevant viral proteins, then move to other clusters that are closely related according to structural similarity metrics such as TM-score and local distance difference test.  We hypothesize that including these related structures will improve performance according to our metrics.  We will track performance improvements as we incorporate additional MSAs.
+
+_TB: The beauty of ESM is that you can train one giant model on all proteins and then query this model. If I'm following the proposal, you would still need buckets and there would be an "HA" model and a "spike" model. So I'm assuming the outputs would be a bunch of distinctly trained models? Each model on a different FoldSeek cluster? You'd have hundreds or thousands of small(ish) models? Some clarity here would be helpful._

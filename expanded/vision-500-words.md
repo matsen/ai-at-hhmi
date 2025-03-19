@@ -7,6 +7,7 @@ Evolution is fundamentally a process of mutation and selection, yet current prot
 ## Success with Antibodies
 
 Our work with antibodies demonstrates the importance of this approach.  We've shown that antibody language models like AbLang2 estimate amino acids coded by codon neighbors as being two orders more likely than non-neighbors, and show clear effects of neutral mutation probability (Figures 4A and 4B).  These factors negatively impact functional prediction (Figure 4C).  Because current models must implicitly learn mutation-level processes, they will always be deficient because they do not have access to nucleotide sequence.
+_TB: In reading this as a proposal, I'm confused on Figure hierarchy. I'm used to being able to get a sense of a proposal / paper by looking at figures, but the ordering in main.pdf doesn't seem to match logical ordering. Here in Vision you start by referencing Figure 4. And don't reference Figure 2 (which would seem to be the closest to a summary figure for your new approach). I'd suggest ordering figures by first use in text in how a reader is going to encounter them._ 
 
 We have developed a Deep Amino acid Selection Model (DASM) that leverages a separately-fit mutation model (Figure 1).  Specifically, we model the probability of a given codon c at a given site j after evolutionary time t as the product of a mutation term, and a selection term which has access to the entire protein sequence.
 
