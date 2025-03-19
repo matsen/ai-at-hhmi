@@ -4,6 +4,8 @@ We have already shown how DASMs provide much better prediction of functional pro
 
 As a next step, fine-tuning on antigen-specific data will reveal the landscape of binders in greater resolution.  However, antigen-labeled data is limited, thus we will use the fact that all sequences in a given clonal family (i.e. the descendants of a given naive antibody sequence) will bind a single epitope.  Thus, we will build a model that takes an entire clonal family's data to enable implicit antigen-specific prediction.
 
+These antigen-specific models will predict binding affinities more accurately, leading to better antibody design.
+
 Also, the protein embeddings for DASMs, free from the confounding effects of mutation, will be more predictive of functional properties when using them for regression.
 
 
