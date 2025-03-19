@@ -1,5 +1,3 @@
-# Inviting Darwin into protein foundation models
-
 ## Overall Vision and Goals
 
 Our project will integrate evolutionary biology principles into protein language models.  Specifically, we will train models of natural selection for antibodies, viruses, and proteins more generally.
@@ -10,11 +8,11 @@ Evolution is fundamentally a process of mutation and selection, yet current prot
 
 Our work with antibodies demonstrates the importance of this approach.  We've shown that antibody language models like AbLang2 estimate amino acids coded by codon neighbors as being two orders more likely than non-neighbors, and show clear effects of neutral mutation probability (Figures 4A and 4B).  These factors negatively impact functional prediction (Figure 4C).  Because current models must implicitly learn mutation-level processes, they will always be deficient because they do not have access to nucleotide sequence.
 
-We have developed a Deep Amino acid Selection Model (DASM) that leverages a separately-fit mutation model (Figure 1).  Specifically, we model the probability of a given codon c at a given site j after evolutionary time t as the product of a mutation term p(j, c, t) and a selection term f(j, c) which has access to the entire protein sequence.
+We have developed a Deep Amino acid Selection Model (DASM) that leverages a separately-fit mutation model (Figure 1).  Specifically, we model the probability of a given codon c at a given site j after evolutionary time t as the product of a mutation term, and a selection term which has access to the entire protein sequence.
 
 For antibodies, mutation is modeled by a convolutional neural network and selection by a modest-sized transformer-encoder.  Rather than using masked-modeling objectives, our model predicts the location and identity of mutations in antibody evolution.
 
-This approach performs better on all metrics: improved out-of-sample prediction (Figure 3), superior performance on functional benchmark tasks (Table 1), and greater interpretability.  DASM is an order of magnitude smaller than modern antibody language models, trained on far less data, and two orders of magnitude faster to run.
+This approach performs better on all metrics: improved out-of-sample prediction (Figure 3), superior performance on functional benchmark tasks (Table 1; compare Figure 4C), and greater interpretability.  DASM is an order of magnitude smaller than modern antibody language models, trained on far less data, and two orders of magnitude faster to run.
 
 ## Extending to Viruses and All Proteins
 
