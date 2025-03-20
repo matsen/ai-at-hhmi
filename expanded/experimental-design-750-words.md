@@ -1,4 +1,4 @@
-DASMs (Deep Amino acid Selection Models) separate nucleotide mutation from protein selection in evolution, allowing us to better model evolutionary processes.  DASMs are trained using a precomputed mutation model (green box, Figure 1a), fitting the DASM selection model (purple box) with the objective of predicting the child sequence in parent-child sequence pairs in phylogenetic trees.
+DASMs (Deep Amino acid Selection Models) separate nucleotide mutation from protein selection in evolution, allowing us to better model evolutionary processes.  DASMs are trained using a precomputed mutation model (green box, Figure 2a), fitting the DASM selection model (purple box) with the objective of predicting the child sequence in parent-child sequence pairs in phylogenetic trees.
 
 
 ## Improving DASMs for antibodies 

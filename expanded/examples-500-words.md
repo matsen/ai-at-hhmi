@@ -11,9 +11,9 @@ Also, the protein embeddings for DASMs, free from the confounding effects of mut
 
 ## DASMs for viral evolution
 
-Evolutionary analysis of viral sequences has led to insights about viral adaptation, but conclusions are limited because evolutionary models give overall inferences for entire sequence alignments.  For a given virus, one can make per-site selection statements with sufficient data, but cannot learn per-sequence per-site using existing methods (Figure 2, top).  In other words, existing methods do not account for epistasis.
+Evolutionary analysis of viral sequences has led to insights about viral adaptation, but conclusions are limited because evolutionary models give overall inferences for entire sequence alignments.  For a given virus, one can make per-site selection statements with sufficient data, but cannot learn per-sequence per-site using existing methods (Figure 4, top).  In other words, existing methods do not account for epistasis.
 
-In contrast, DASMs return per-sequence per-site estimates of natural selection (Figure 2, bottom).  In fact, we infer per-sequence per-site per-amino-acid estimates, validated through functional assays.  This is enabled by training on many related datasets, which in the antibody case are different clonal families.
+In contrast, DASMs return per-sequence per-site estimates of natural selection (Figure 4, bottom).  In fact, we infer per-sequence per-site per-amino-acid estimates, validated through functional assays.  This is enabled by training on many related datasets, which in the antibody case are different clonal families.
 
 A similar concept applies for viruses.  For example, when studying selection pressure on an H5N1 sequence in humans, traditional analysis would align H5N1 hemagglutinin sequences and perform evolutionary analysis, lacking power because these sequences are few.  Adding other sequences, such as from H1N1, would distort the inference.
 
